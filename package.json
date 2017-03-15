@@ -1,0 +1,24 @@
+{
+  "name": "mean_example",
+  "version": "1.0.0",
+  "description": "Noticias UNQ",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node -- index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanrizzi/mean_example.git"
+  },
+  "author": "Roman Rizzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/romanrizzi/mean_example/issues"
+  },
+  "homepage": "https://github.com/romanrizzi/mean_example#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0"
+  }
+}
