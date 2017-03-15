@@ -1,3 +1,4 @@
-const greet = (who) => console.log(`Hello ${who} from Node.js+ES6`)
+import express from 'express'
 
-greet('World')
+const port = 3001
+express().listen(port, () => console.log(`Server running on ${port}`))
