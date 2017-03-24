@@ -1,5 +1,6 @@
 import express from 'express'
 import Post from '../models/Post.js'
+import Comment from '../models/Comment.js'
 
 let router = express.Router()
 
@@ -20,7 +21,9 @@ router.get('/noticias', (req, res, next) => {
 })
 
 router.get('/noticias/:noticia', (req, res, next) => {
-  res.json(noticia)
+  req.noticia.populate('comments').execPopulate()
+    .then(noticiaCompleta => res.json(noticiaCompleta))
+    .catch(next)
 })
 
 router.put('/noticias/:id/upvote', (req, res, next) => {
@@ -30,11 +33,26 @@ router.put('/noticias/:id/upvote', (req, res, next) => {
   noticia.save().then(noticiaGuardada => res.json(noticiaGuardada)).catch(next)
 })
 
-
 router.post('/noticias', (req, res, next) => {
   const noticia = new Post(req.body)
 
   noticia.save().then(noticia => res.json(noticia.id)).catch(next)
+})
+
+router.post('/noticias/:noticia/comentarios', (req, res, next) => {
+  const noticia = req.noticia
+  const comentario = new Comment(req.body)
+  comentario.post = noticia
+
+  comentario.save()
+    .then(comentarioGuardado => {
+      noticia.comments.push(comentarioGuardado)
+
+      noticia.save()
+        .then(noticiaGuardada => res.json(comentarioGuardado))
+        .catch(next)
+    })
+    .catch(next)
 })
 
 export default router
