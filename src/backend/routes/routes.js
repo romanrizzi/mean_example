@@ -41,17 +41,16 @@ router.post('/noticias', (req, res, next) => {
 
 router.post('/noticias/:noticia/comentarios', (req, res, next) => {
   const noticia = req.noticia
-  const comentario = new Comment(req.body)
+  let comentario = new Comment(req.body)
   comentario.post = noticia
 
   comentario.save()
     .then(comentarioGuardado => {
-      noticia.comments.push(comentarioGuardado)
-
-      noticia.save()
-        .then(noticiaGuardada => res.json(comentarioGuardado))
-        .catch(next)
+      comentario = comentarioGuardado
+      noticia.comments.push(comentario)
+      return noticia.save()
     })
+    .then(noticiaGuardada => res.json(comentario))
     .catch(next)
 })
 
