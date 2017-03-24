@@ -9,5 +9,7 @@ mongoose.connect('mongodb://localhost/news')
 app.use(bodyParserFactory.json())
 app.use(router)
 
+app.use(express.static(__dirname + "/../../dist/frontend"))
+
 const port = 3001
 app.listen(port, () => console.log(`Server running on ${port}`))
