@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
   selector: 'app-view',
   template: `<h1>Bienvenidos a {{name}}</h1>
              <post *ngFor="let item of posts" [data]=item></post>
+             <newPost></newPost>
             `
 })
 export default class AppComponent {
