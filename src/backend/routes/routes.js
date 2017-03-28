@@ -26,7 +26,7 @@ router.get('/noticias/:noticia', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/noticias/:id/upvote', (req, res, next) => {
+router.put('/noticias/:noticia/upvote', (req, res, next) => {
   const noticia = req.noticia
   noticia.upvote()
 

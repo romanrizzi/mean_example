@@ -15,6 +15,7 @@ import NewPostComponent from './app/components/newPost.component'
 import PostDetailComponent from './app/components/postDetail.component'
 import PostListComponent from './app/components/postList.component'
 import CommentComponent from './app/components/comment.component'
+import NewCommentComponent from './app/components/newComment.component'
 
 import { RouterModule }  from '@angular/router';
 
@@ -33,7 +34,8 @@ let router = RouterModule.forRoot([
     AppComponent,
     PostDetailComponent,
     PostListComponent,
-    CommentComponent
+    CommentComponent,
+    NewCommentComponent
   ],
   bootstrap: [ AppComponent ]
 })

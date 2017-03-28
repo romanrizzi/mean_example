@@ -6,6 +6,7 @@ import PostService from '../services/post.service';
   template: `<form>
                 Nueva noticia:
                 <input [(ngModel)]="data.title" placeholder="Titulo" name="title">
+                <input [(ngModel)]="data.author" placeholder="Autor" name="author">
                 <textarea [(ngModel)]="data.content" placeholder="Contenido" name="content"></textarea>
 
                 <button type="button" (click)="onSubmit()">Submit</button>
