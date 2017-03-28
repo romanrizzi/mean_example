@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import PostService from '../services/post.service';
 
 @Component({
   selector: 'newPost',
@@ -8,14 +9,19 @@ import { Component } from '@angular/core';
                 <textarea [(ngModel)]="data.content" placeholder="Contenido" name="content"></textarea>
 
                 <button type="button" (click)="onSubmit()">Submit</button>
-             <form>`
+             <form>`,
+   providers: [ PostService ]
 })
 export default class NewPostComponent {
-  constructor() {
+  constructor(postService) {
     this.data = {}
+    this.postService = postService
   }
 
   onSubmit() {
-    console.log("Noticia creada", this.data)
+    this.postService.create(this.data)
+    this.data = {}
   }
 }
+
+NewPostComponent.parameters = [PostService]
