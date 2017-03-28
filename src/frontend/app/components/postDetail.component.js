@@ -9,7 +9,9 @@ import PostService from "../services/post.service"
   template: `<post [data]="post"></post>
             <h2>Comentarios:</h2>
             <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
-            <a [routerLink]="['/noticias']">Atras</a>`
+            <a [routerLink]="['/noticias']">Atras</a>
+            <button type="button" (click)="upvote()">votar</button>
+            <new-comment [postID]="post._id"></new-comment>`
 })
 export default class PostDetailComponent {
 
@@ -25,6 +27,10 @@ export default class PostDetailComponent {
           .then(post => this.post = post)
           .catch(e => console.log(e));
     });
+  }
+
+  upvote() {
+    this.post = this.postService.upvote(this.post._id)
   }
 
 }

@@ -27,6 +27,19 @@ export default class PostService {
               .then(response => this._posts.push(post))
               .catch(err => console.log(err))
     }
+
+    upvote(id) {
+      this.http.put(`/noticias/${id}/upvote`)
+        .toPromise()
+        .then(response => response.json());
+    }
+
+    createComment(id, comment) {
+      this.http.post(`/noticias/${id}/comentarios`, JSON.stringify(comment), { headers:{'Content-Type': 'application/json'}})
+        .toPromise()
+        .then(response => response.json())
+        .catch(err => console.log(err))
+    }
 }
 
 PostService.parameters = [
